@@ -1,0 +1,251 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f5f7fa;
+    margin: 0;
+    color: #222;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    padding: 10px 0;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.logo {
+    height: 48px;
+}
+
+.nav {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav li {
+    font-weight: 500;
+}
+
+.nav li a {
+    text-decoration: none;
+    color: #003366;
+    transition: color 0.2s;
+}
+
+.nav li a:hover {
+    color: #0077c2;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.search {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.lang {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* BANNER */
+.slider-container {
+    width: 100%;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-banner {
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5s;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-banner.active {
+    display: flex;
+    opacity: 1;
+}
+
+.slider-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+    user-select: none;
+    pointer-events: none;
+}
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 0, 0, 0.36);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 28px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.slider-arrow:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.slider-arrow.left {
+    left: 16px;
+}
+
+.slider-arrow.right {
+    right: 16px;
+}
+
+/* Intro */
+.solutions-intro {
+  background: #fff;
+  padding: 40px 0 20px 0;
+  text-align: center;
+}
+.solutions-intro h2 {
+  font-size: 2rem;
+  margin-bottom: 18px;
+  color: #003366;
+}
+.solutions-intro p {
+  font-size: 1.1rem;
+  color: #444;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Solutions Grid */
+.solutions-grid-section {
+  padding: 32px 0;
+  background: #f5f7fa;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 32px;
+}
+.solution-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,51,102,0.04);
+  padding: 32px 24px;
+  text-align: center;
+  transition: box-shadow 0.2s;
+}
+.solution-card:hover {
+  box-shadow: 0 8px 24px rgba(0,119,194,0.13);
+}
+.solution-card .icon {
+  font-size: 2.8rem;
+  margin-bottom: 18px;
+}
+.solution-card h3 {
+  color: #003366;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.solution-card p {
+  color: #444;
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+/* Call to Action */
+.solutions-cta {
+  background: #003366;
+  color: #fff;
+  padding: 48px 0;
+  text-align: center;
+}
+.cta-content h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+.cta-content p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+.cta-btn {
+  background: #0077c2;
+  color: #fff;
+  padding: 14px 38px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 1rem;
+  border: none;
+  display: inline-block;
+  transition: background 0.2s;
+}
+.cta-btn:hover {
+  background: #005ea2;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .banner-content h1 {
+    font-size: 2.3rem;
+  }
+}
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .solutions-intro {
+    padding: 28px 0 10px 0;
+  }
+  .solution-card {
+    padding: 22px 14px;
+  }
+  .solutions-cta {
+    padding: 32px 0;
+  }
+  .banner-content h1 {
+    font-size: 1.4rem;
+  }
+  .banner-content p {
+    font-size: 1rem;
+  }
+}
