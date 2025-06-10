@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Import sản phẩm</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f7f7f7;
+        padding: 30px;
+        color: #222;
+    }
+
+    h1 {
+        color: #2c3e50;
+    }
+
+    section {
+        background: #fff;
+        margin: 18px 0;
+        padding: 20px 18px;
+        border-radius: 7px;
+        box-shadow: 0 1px 8px #0001;
+    }
+
+    input[type="file"],
+    input[type="text"] {
+        margin-bottom: 8px;
+    }
+
+    button {
+        padding: 6px 20px;
+        background: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        margin: 3px 0;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #217dbb;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 12px;
+    }
+
+    th,
+    td {
+        padding: 6px 10px;
+    }
+
+    th {
+        background: #eee;
+    }
+
+    img {
+        border-radius: 4px;
+    }
+</style>
+
+<body>
+    <h1>Admin: Import sản phẩm tự động</h1>
+
+    <section>
+        <h2>Nhập sản phẩm từ Excel</h2>
+        <input type="file" id="excelFile" accept=".xlsx, .xls" />
+        <button onclick="handleExcel()">Tải lên và Xem trước</button>
+    </section>
+
+    <section>
+        <h2>Nhập sản phẩm từ API</h2>
+        <input type="text" id="apiUrl" placeholder="Nhập URL API trả về danh sách sản phẩm" style="width: 400px;" />
+        <button onclick="handleApi()">Lấy dữ liệu và Xem trước</button>
+    </section>
+
+    <section>
+        <h2>Xem trước dữ liệu sản phẩm</h2>
+        <div id="preview"></div>
+        <button id="importBtn" style="display:none;" onclick="importProducts()">Thêm sản phẩm vào hệ thống</button>
+    </section>
+
+    <script>
+        let products = [];
+
+        function handleExcel() {
+            const fileInput = document.getElementById('excelFile');
+            const file = fileInput.files[0];
+            if (!file) return alert('Vui lòng chọn file Excel');
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const data = e.target.result;
+                const workbook = XLSX.read(data, { type: 'binary' });
+                const sheetName = workbook.SheetNames[0];
+                const sheet = workbook.Sheets[sheetName];
+                const json = XLSX.utils.sheet_to_json(sheet, { defval: "" });
+                products = json;
+                previewProducts();
+            };
+            reader.readAsBinaryString(file);
+        }
+
+        function handleApi() {
+            const url = document.getElementById('apiUrl').value.trim();
+            if (!url) return alert('Vui lòng nhập URL API');
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    products = Array.isArray(data) ? data : data.items || [];
+                    previewProducts();
+                }).catch(err => alert('Lỗi khi gọi API: ' + err));
+        }
+
+        function previewProducts() {
+            if (!products.length) {
+                document.getElementById('preview').innerHTML = '<i>Không có dữ liệu để hiển thị</i>';
+                document.getElementById('importBtn').style.display = 'none';
+                return;
+            }
+            let html = `<table border="1" cellpadding="4">
+        <tr>
+          <th>Tên sản phẩm</th>
+          <th>Mã sản phẩm</th>
+          <th>Ảnh sản phẩm</th>
+          <th>Chi tiết</th>
+          <th>Giá</th>
+          <th>Mode</th>
+          <th>Tag</th>
+        </tr>`;
+            for (let sp of products) {
+                html += `<tr>
+          <td>${sp['Tên sản phẩm'] || sp.name || ''}</td>
+          <td>${sp['Mã sản phẩm'] || sp.code || ''}</td>
+          <td>${renderImage(sp['Ảnh sản phẩm'] || sp.image)}</td>
+          <td>${sp['Chi tiết sản phẩm'] || sp.detail || ''}</td>
+          <td>${sp['Giá sản phẩm'] || sp.price || ''}</td>
+          <td>${sp['Mode sản phẩm'] || sp.mode || ''}</td>
+          <td>${sp['Tag sản phẩm'] || sp.tag || ''}</td>
+        </tr>`;
+            }
+            html += '</table>';
+            document.getElementById('preview').innerHTML = html;
+            document.getElementById('importBtn').style.display = '';
+        }
+
+        function renderImage(img) {
+            if (!img) return '';
+            if (img.startsWith('http')) return `<img src="${img}" alt="" width="70">`;
+            return img; // nếu là tên file hoặc base64
+        }
+
+        function importProducts() {
+            // Giả lập lưu vào localStorage, bạn có thể thay bằng code gửi lên server hoặc lưu vào nơi khác tùy ý
+            localStorage.setItem('products', JSON.stringify(products));
+            alert('Đã thêm ' + products.length + ' sản phẩm vào hệ thống (localStorage)');
+        }
+    </script>
+</body>
+
+</html>
