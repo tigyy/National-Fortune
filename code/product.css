@@ -70,69 +70,62 @@ body {
 
 /* BANNER */
 .slider-container {
-    width: 100%;
-    height: 500px;
-    position: relative;
-    overflow: hidden;
+  width: 100%;
+  min-height: 270px;
+  /* Responsive: adjust as needed */
+  overflow: hidden;
+  position: relative;
+  border-radius: 2px;
+  box-sizing: border-box;
 }
 
 .slider-banner {
-    width: 100%;
-    height: 100%;
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: opacity 0.5s;
-    z-index: 1;
-    justify-content: center;
-    align-items: center;
-}
-
-.slider-banner.active {
-    display: flex;
-    opacity: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  position: relative;
+  background: linear-gradient(90deg, #094184 0%, #2c7fc5 50%, #d6e7f4 100%);
+  /* The radial pattern is a background image, use an SVG or PNG as needed */
+  /* Example with SVG radial pattern overlay: */
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.08) 2%, transparent 60%),
+    linear-gradient(90deg, #094184 0%, #2c7fc5 50%, #d6e7f4 100%);
+  min-height: 270px;
+  /* Adjust min-height for smaller screens if needed */
 }
 
 .slider-banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
-    user-select: none;
-    pointer-events: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right top;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  /* Optionally add a slight opacity if you want to blend with bg */
+  /* opacity: 0.93; */
+  pointer-events: none;
+  user-select: none;
 }
 
-.slider-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
-    background: rgba(0, 0, 0, 0.36);
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 28px;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-}
+.slider-banner::before {
+  content: "Product";
+  position: absolute;
+  left: 10vw;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4c9ade;
+  font-size: 4vw;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+  z-index: 2;
+  /* Responsive text shadow for contrast */
+  text-shadow: 0 2px 12px rgba(0,0,0,0.15);}
 
-.slider-arrow:hover {
-    background: rgba(0, 0, 0, 0.6);
-}
-
-.slider-arrow.left {
-    left: 16px;
-}
-
-.slider-arrow.right {
-    right: 16px;
-}
 
 .footer {
     background: #003366;
@@ -165,155 +158,152 @@ body {
 .footer-menu li a:hover {
     text-decoration: underline;
 }
-
-.auma-products-section {
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 40px 20px 60px 20px;
+.textconten h2{
+  margin: 20px 100px 0px 100px;
+  font-size: 20px;
+  font-weight: 400;
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 24px;
+  margin: 32px auto;
+  max-width: 1200px;
+  /* background: #fff; */
+  padding: 12px 0;
 }
 
-.auma-products-title {
-    font-size: 46px;
-    font-weight: 400;
-    margin-bottom: 32px;
-    color: #003366;
-    letter-spacing: 1px;
-    text-align: left;
+.product-item {
+  position: relative;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(80,120,180,0.09);
+  transition: box-shadow 0.2s;
+  cursor: pointer;
 }
 
-.auma-products-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 36px;
-    justify-content: center;
+.product-item:hover {
+  box-shadow: 0 6px 20px rgba(80,120,180,0.15);
 }
 
-.auma-product-card {
-    background: #fff;
-    border-radius: 7px;
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-    width: 22%;
-    min-width: 220px;
-    max-width: 340px;
-    display: flex;
-    flex-direction: column;
-    transition: box-shadow 0.18s, transform 0.18s;
-    text-align: left;
-    overflow: hidden;
+.product-item img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background: #f2f2f2;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-.auma-product-card:hover {
-    box-shadow: 0 8px 34px rgba(0, 0, 0, 0.14);
-    transform: translateY(-6px) scale(1.02);
+.product-label {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  background: #0070b8;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 2px;
+  font-size: 1.06rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 400;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  letter-spacing: 0.2px;
+}
+.contact-products {
+  margin: 40px 0 0 0;
+  padding-left: 167px;
 }
 
-.auma-product-img {
-    width: 100%;
-    height: 180px;
-    object-fit: contain;
-    background: #e6e6e6;
-    display: block;
-    border-bottom: 1px solid #e2e8f0;
+.contact-products h2 {
+  font-size: 26px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  margin-top: 0;
+  color: #111;
+  font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-.auma-product-content {
-    padding: 22px 20px 26px 20px;
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
+.contact-company {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 30px;
+  color: #003b5c;
+  font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-.auma-product-name {
-    font-size: 1.25rem;
-    color: #003366;
-    font-weight: 600;
-    margin: 0 0 10px 0;
-    letter-spacing: 0.5px;
-    line-height: 1.25;
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
 }
 
-.auma-product-type {
-    color: #0077c2;
-    font-size: 0.98rem;
-    margin-bottom: 12px;
-    font-weight: 500;
+.contact-btn {
+  display: flex;
+  align-items: center;
+  background: #0070b8;
+  color: #fff;
+  font-size: 1.5rem;
+  text-decoration: none;
+  text-align: center;
+  padding: 18px 28px;
+  border-radius: 2px;
+  transition: background 0.18s;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 400;
+  min-width: 340px;
+  margin-bottom: 8px;
+  
 }
 
-.auma-product-desc {
-    font-size: 1rem;
-    color: #383838;
-    flex-grow: 1;
-    margin-bottom: 0;
+.contact-btn:hover,
+.contact-btn:focus {
+  background: #005a92;
 }
 
-.auma-product-link {
-    margin-top: 18px;
-    display: inline-block;
-    color: #0077c2;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    border-bottom: 1px solid #d0eaff;
-    transition: color 0.18s;
+.contact-icon {
+  font-size: 1.6rem;
+  margin-right: 14px;
+  display: inline-block;
 }
 
-.auma-product-link:hover {
-    color: #003366;
-    border-bottom: 1px solid #003366;
-}
-
-@media (max-width: 1100px) {
-    .auma-product-card {
-        width: 32%;
-    }
-}
-
+/* Responsive */
 @media (max-width: 800px) {
-    .auma-products-title {
-        font-size: 28px;
-    }
+  .contact-products h2 {
+    font-size: 2.1rem;
+  }
+  .contact-company {
+    font-size: 1.2rem;
+  }
+  .contact-btn {
+    font-size: 1.05rem;
+    min-width: 210px;
+    padding: 13px 15px;
+  }
+}
 
-    .auma-product-card {
-        width: 47%;
-    }
-
-    .auma-product-img {
-        height: 120px;
-    }
+@media (max-width: 900px) {
+  .products-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 12px;
+    max-width: 700px;
+  }
+  .product-item img {
+    height: 160px;
+  }
 }
 
 @media (max-width: 600px) {
-    .auma-products-section {
-        padding: 10px 4px 20px 4px;
-    }
-
-    .auma-products-title {
-        font-size: 20px;
-        margin-bottom: 16px;
-    }
-
-    .auma-product-card {
-        width: 99%;
-        min-width: unset;
-    }
-
-    .auma-product-img {
-        height: 70px;
-    }
-
-    .auma-product-content {
-        padding: 10px 8px 12px 8px;
-    }
-
-    .auma-product-name {
-        font-size: 1rem;
-    }
-
-    .auma-product-type {
-        font-size: 0.92rem;
-    }
-
-    .auma-product-desc {
-        font-size: 0.98rem;
-    }
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 98vw;
+  }
+  .product-item img {
+    height: 120px;
+  }
+  .product-label {
+    font-size: 0.97rem;
+    padding: 7px 15px;
+  }
 }

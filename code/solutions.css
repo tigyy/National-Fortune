@@ -70,182 +70,240 @@ body {
 
 /* BANNER */
 .slider-container {
-    width: 100%;
-    height: 500px;
-    position: relative;
-    overflow: hidden;
+  width: 100%;
+  min-height: 270px;
+  /* Responsive: adjust as needed */
+  overflow: hidden;
+  position: relative;
+  border-radius: 2px;
+  box-sizing: border-box;
 }
 
 .slider-banner {
-    width: 100%;
-    height: 100%;
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: opacity 0.5s;
-    z-index: 1;
-    justify-content: center;
-    align-items: center;
-}
-
-.slider-banner.active {
-    display: flex;
-    opacity: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  position: relative;
+  background: linear-gradient(90deg, #094184 0%, #2c7fc5 50%, #d6e7f4 100%);
+  /* The radial pattern is a background image, use an SVG or PNG as needed */
+  /* Example with SVG radial pattern overlay: */
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.08) 2%, transparent 60%),
+    linear-gradient(90deg, #094184 0%, #2c7fc5 50%, #d6e7f4 100%);
+  min-height: 270px;
+  /* Adjust min-height for smaller screens if needed */
 }
 
 .slider-banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
-    user-select: none;
-    pointer-events: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right top;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  /* Optionally add a slight opacity if you want to blend with bg */
+  /* opacity: 0.93; */
+  pointer-events: none;
+  user-select: none;
 }
 
-.slider-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
-    background: rgba(0, 0, 0, 0.36);
+.slider-banner::before {
+  content: "Solutions";
+  position: absolute;
+  left: 10vw;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4c9ade;
+  font-size: 4vw;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+  z-index: 2;
+  /* Responsive text shadow for contrast */
+  text-shadow: 0 2px 12px rgba(0,0,0,0.15);}
+
+
+.footer {
+    background: #003366;
     color: #fff;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 28px;
-    z-index: 2;
+    padding: 30px 0;
+}
+
+.footer-content {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
+    flex-wrap: wrap;
 }
 
-.slider-arrow:hover {
-    background: rgba(0, 0, 0, 0.6);
+.footer-menu {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
 }
 
-.slider-arrow.left {
-    left: 16px;
+.footer-menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: text-decoration 0.2s;
 }
 
-.slider-arrow.right {
-    right: 16px;
+.footer-menu li a:hover {
+    text-decoration: underline;
 }
-
-/* Intro */
-.solutions-intro {
-  background: #fff;
-  padding: 40px 0 20px 0;
-  text-align: center;
+.textconten h2{
+  margin: 20px 100px 0px 100px;
+  font-size: 20px;
+  font-weight: 400;
 }
-.solutions-intro h2 {
-  font-size: 2rem;
-  margin-bottom: 18px;
-  color: #003366;
-}
-.solutions-intro p {
-  font-size: 1.1rem;
-  color: #444;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-/* Solutions Grid */
-.solutions-grid-section {
-  padding: 32px 0;
-  background: #f5f7fa;
-}
-.grid {
+.products-grid {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 32px;
-}
-.solution-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0,51,102,0.04);
-  padding: 32px 24px;
-  text-align: center;
-  transition: box-shadow 0.2s;
-}
-.solution-card:hover {
-  box-shadow: 0 8px 24px rgba(0,119,194,0.13);
-}
-.solution-card .icon {
-  font-size: 2.8rem;
-  margin-bottom: 18px;
-}
-.solution-card h3 {
-  color: #003366;
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
-.solution-card p {
-  color: #444;
-  font-size: 1rem;
-  margin-bottom: 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 24px;
+  margin: 32px auto;
+  max-width: 1200px;
+  /* background: #fff; */
+  padding: 12px 0;
 }
 
-/* Call to Action */
-.solutions-cta {
-  background: #003366;
-  color: #fff;
-  padding: 48px 0;
-  text-align: center;
+.product-item {
+  position: relative;
+  /* background: #fff; */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(80,120,180,0.09);
+  transition: box-shadow 0.2s;
+  cursor: pointer;
 }
-.cta-content h2 {
+
+.product-item:hover {
+  box-shadow: 0 6px 20px rgba(80,120,180,0.15);
+}
+
+.product-item img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background: #f2f2f2;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.product-label {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  background: #0070b8;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 2px;
+  font-size: 1.06rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 400;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  letter-spacing: 0.2px;
+}
+.contact-products {
+  margin: 40px 0 0 0;
+  padding-left: 167px;
+}
+
+.contact-products h2 {
+  font-size: 26px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  margin-top: 0;
+  color: #111;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.contact-company {
   font-size: 2rem;
-  margin-bottom: 16px;
-}
-.cta-content p {
-  font-size: 1.1rem;
+  font-weight: 400;
   margin-bottom: 30px;
+  color: #003b5c;
+  font-family: 'Segoe UI', Arial, sans-serif;
 }
-.cta-btn {
-  background: #0077c2;
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  background: #0070b8;
   color: #fff;
-  padding: 14px 38px;
-  border-radius: 30px;
+  font-size: 1.5rem;
   text-decoration: none;
-  font-size: 1rem;
-  border: none;
-  display: inline-block;
-  transition: background 0.2s;
+  text-align: center;
+  padding: 18px 28px;
+  border-radius: 2px;
+  transition: background 0.18s;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 400;
+  min-width: 340px;
+  margin-bottom: 8px;
+  
 }
-.cta-btn:hover {
-  background: #005ea2;
+
+.contact-btn:hover,
+.contact-btn:focus {
+  background: #005a92;
+}
+
+.contact-icon {
+  font-size: 1.6rem;
+  margin-right: 14px;
+  display: inline-block;
 }
 
 /* Responsive */
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
+@media (max-width: 800px) {
+  .contact-products h2 {
+    font-size: 2.1rem;
   }
-  .banner-content h1 {
-    font-size: 2.3rem;
+  .contact-company {
+    font-size: 1.2rem;
+  }
+  .contact-btn {
+    font-size: 1.05rem;
+    min-width: 210px;
+    padding: 13px 15px;
   }
 }
+
+@media (max-width: 900px) {
+  .products-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 12px;
+    max-width: 700px;
+  }
+  .product-item img {
+    height: 160px;
+  }
+}
+
 @media (max-width: 600px) {
-  .grid {
+  .products-grid {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 16px;
+    max-width: 98vw;
   }
-  .solutions-intro {
-    padding: 28px 0 10px 0;
+  .product-item img {
+    height: 120px;
   }
-  .solution-card {
-    padding: 22px 14px;
-  }
-  .solutions-cta {
-    padding: 32px 0;
-  }
-  .banner-content h1 {
-    font-size: 1.4rem;
-  }
-  .banner-content p {
-    font-size: 1rem;
+  .product-label {
+    font-size: 0.97rem;
+    padding: 7px 15px;
   }
 }
