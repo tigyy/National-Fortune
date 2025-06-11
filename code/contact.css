@@ -206,7 +206,7 @@ textarea:focus {
   background: #005ea2;
 }
 
-/* Responsive */
+/* Responsive cho màn hình nhỏ hơn 600px */
 @media (max-width: 600px) {
   .container {
     width: 98%;
@@ -218,5 +218,22 @@ textarea:focus {
   .form-row {
     flex-direction: column;
     gap: 10px;
+  }
+}
+
+/* Responsive cho màn hình nhỏ hơn 400px */
+@media (max-width: 400px) {
+  .contact-form {
+    padding: 8px 1px;
+  }
+  .banner-content h1 {
+    font-size: 1.2rem;
+  }
+  .banner-content p {
+    font-size: 0.9rem;
+  }
+  .cta-btn {
+    font-size: 0.9rem;
+    padding: 8px 12px;
   }
 }

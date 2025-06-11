@@ -6,6 +6,7 @@
     <title>AUMA Contact Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="contact.css">
+    
 </head>
 
 <body>
@@ -53,62 +54,66 @@
     </section>
 
     <!-- Contact Form -->
-    <section class="contact-form-section">
-        <div class="container">
-            <form class="contact-form" autocomplete="off">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Full Name <span>*</span></label>
-                        <input type="text" id="name" name="name" required placeholder="Your full name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email <span>*</span></label>
-                        <input type="email" id="email" name="email" required placeholder="your@email.com">
-                    </div>
+   <section class="contact-form-section">
+    <div class="container">
+        <form class="contact-form" id="contactForm" autocomplete="off" novalidate>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Full Name <span>*</span></label>
+                    <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your full name" aria-required="true">
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="company">Company</label>
-                        <input type="text" id="company" name="company" placeholder="Company name">
-                    </div>
-                    <div class="form-group">
-                        <label for="country">Country <span>*</span></label>
-                        <select id="country" name="country" required>
-                            <option value="">Select country</option>
-                            <option>Germany</option>
-                            <option>United Kingdom</option>
-                            <option>France</option>
-                            <option>Vietnam</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="email">Email <span>*</span></label>
+                    <input type="email" id="email" name="email" required autocomplete="email" placeholder="your@email.com" aria-required="true">
                 </div>
-                <div class="form-row">
-                    <div class="form-group form-group-full">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+49 123 4567890">
-                    </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company" autocomplete="organization" placeholder="Company name">
                 </div>
-                <div class="form-row">
-                    <div class="form-group form-group-full">
-                        <label for="message">Message <span>*</span></label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Your message"></textarea>
-                    </div>
+                <div class="form-group">
+                    <label for="country">Country <span>*</span></label>
+                    <select id="country" name="country" required aria-required="true">
+                        <option value="">Select country</option>
+                        <option>Germany</option>
+                        <option>United Kingdom</option>
+                        <option>France</option>
+                        <option>Vietnam</option>
+                        <option>Other</option>
+                    </select>
                 </div>
-                <div class="form-row">
-                    <div class="form-group form-group-full">
-                        <label class="checkbox-label">
-                            <input type="checkbox" required>
-                            I agree to the <a href="#">privacy policy</a> <span>*</span>
-                        </label>
-                    </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group form-group-full">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+49 123 4567890">
                 </div>
-                <div class="form-row">
-                    <button type="submit" class="cta-btn">Send Message</button>
+            </div>
+            <div class="form-row">
+                <div class="form-group form-group-full">
+                    <label for="message">Message <span>*</span></label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Your message" aria-required="true"></textarea>
                 </div>
-            </form>
-        </div>
-    </section>
+            </div>
+            <!-- Honeypot (ẩn cho người dùng, chỉ bot mới điền) -->
+            <input type="text" name="website" id="website" style="display:none;">
+            <div class="form-row">
+                <div class="form-group form-group-full">
+                    <label class="checkbox-label" for="policy">
+                        <input type="checkbox" id="policy" name="policy" required aria-required="true">
+                        I agree to the <a href="#">privacy policy</a> <span>*</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-row">
+                <button type="submit" class="cta-btn">Send Message</button>
+            </div>
+            <div class="form-message" aria-live="polite"></div>
+        </form>
+    </div>
+</section>
+    <script src="contact.js"></script>
+    <script src="contact.js"></script>
 </body>
-
 </html>

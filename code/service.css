@@ -363,7 +363,7 @@ body {
   margin-right: 14px;
   display: inline-block;
 }
-/* Responsive styles */
+/* Responsive cho grid dịch chuyển cột */
 @media (max-width: 1200px) {
   .service-hero {
     flex-direction: column;
@@ -383,7 +383,44 @@ body {
     font-size: 25px;
   }
 }
+
+/* Chuyển grid về 2 cột */
+@media (max-width: 1050px) {
+  .services-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 36px 18px;
+  }
+  .services-grid .service-item:nth-child(4),
+  .services-grid .service-item:nth-child(5) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+/* Mobile: Chỉ còn 1 cột */
 @media (max-width: 700px) {
+  .discover-services {
+    padding: 12px 0 0 4px;
+  }
+  .discover-services h1 {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px 0;
+    margin-top: 9px;
+  }
+  .service-item img {
+    max-width: 98vw;
+  }
+  .service-label {
+    font-size: 14px;
+    padding: 5px 12px;
+    min-width: 90px;
+    bottom: -5px;
+  }
   .service-hero-content h1 {
     font-size: 32px;
     margin-bottom: 16px;
@@ -402,5 +439,16 @@ body {
   .service-hero-image {
     min-width: 0;
     max-width: 98vw;
+  }
+}
+
+/* Điểm siêu nhỏ hơn 400px */
+@media (max-width: 400px) {
+  .service-label {
+    font-size: 10px;
+    padding: 2px 4px;
+  }
+  .service-item img {
+    max-width: 96vw;
   }
 }

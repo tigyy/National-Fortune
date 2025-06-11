@@ -5,6 +5,7 @@
   <title>AUMA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="script.js">
 
 </head>
 <body>
@@ -27,13 +28,8 @@
           <option>DE</option>
           <option>FR</option>
         </select>
+        
       </div>
-      <!-- Hamburger menu button -->
-      <button class="hamburger" id="hamburger-btn" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
     </div>
   </header>
 
@@ -129,7 +125,9 @@
   <footer class="footer">
     <div class="container footer-content">
       <div>
-        <p>© 2025 AUMA. All rights reserved.</p>
+        <p>Phone number: +84835596983</p>
+         <p>1 Dinh Le Street, Trang Tien, Hoan Kiem, Hanoi, Vietnam</p>
+         <p>© 2025 AUMAVIETNAM</p>
       </div>
       <div>
         <ul class="footer-menu">
@@ -140,27 +138,7 @@
       </div>
     </div>
   </footer>
-   <!-- Script cho hamburger menu -->
-  <script>
-    // Hamburger menu JS
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const nav = document.getElementById('main-nav');
-    hamburgerBtn.addEventListener('click', function() {
-      nav.classList.toggle('active');
-      hamburgerBtn.classList.toggle('active');
-    });
-    // Click ngoài menu sẽ đóng menu (tùy chọn, có thể bỏ)
-    document.addEventListener('click', function(e) {
-      if (
-        !hamburgerBtn.contains(e.target) &&
-        !nav.contains(e.target) &&
-        nav.classList.contains('active')
-      ) {
-        nav.classList.remove('active');
-        hamburgerBtn.classList.remove('active');
-      }
-    });
-  </script>
+
  <!-- script cho banner  -->
   <script>
     const banners = document.querySelectorAll('.slider-banner');
@@ -183,5 +161,6 @@
       showBanner(current);
     };
   </script>
+  
 </body>
 </html>
